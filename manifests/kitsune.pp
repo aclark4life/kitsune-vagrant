@@ -9,12 +9,17 @@ file { '/etc/motd':
               Managed by Puppet. Featuring kitsune.\n"
 }
 
-exec { "update":
+exec { "apt_update":
     command => "sudo aptitude update",
     path => "/usr/bin",
 }
 
-exec { "upgrade":
+exec { "apt_upgrade":
     command => "sudo aptitude -y safe-upgrade",
+    path => "/usr/bin",
+}
+
+exec { "install_git":
+    command => "sudo aptitude -y install git-core",
     path => "/usr/bin",
 }
