@@ -27,6 +27,6 @@ exec { "install_python":
 
 exec { "install_git":
     command => "sudo aptitude -y install git-core;
-                git clone --recursive git://github.com/aclark4life/kitsune.git;
+                git clone --recursive git://github.com/aclark4life/kitsune.git",
     path => "/usr/bin",
 }
