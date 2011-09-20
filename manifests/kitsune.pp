@@ -19,15 +19,14 @@ exec { "apt_update":
 #    path => "/usr/bin",
 #}
 
-exec { "install_python":
+exec { "install_kitsune":
     command => "sudo aptitude -y install python2.6;
-                sudo aptitude -y install python2.6-dev",
-    path => "/usr/bin",
-}
-
-exec { "install_git":
-    command => "sudo aptitude -y install git-core;
+                sudo aptitude -y install python2.6-dev;
+                sudo aptitude -y install git-core;
                 cd /home/vagrant;
-                git clone --recursive git://github.com/aclark4life/kitsune.git",
+                git clone --recursive git://github.com/aclark4life/kitsune.git;
+                cd /home/vagrant/kitsune;
+                sudo easy_install-2.6 pip;
+                sudo pip install -r requirements/compiled.txt;
     path => "/usr/bin",
 }
