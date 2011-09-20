@@ -9,11 +9,21 @@ file { '/etc/motd':
               Managed by Puppet. Featuring kitsune.\n"
 }
 
-exec { "install_kitsune":
+exec { "updates":
     command => "sudo aptitude update;
-                sudo aptitude -y safe-upgrade;
-                sudo aptitude -y install git-core libmysqlclient-dev mysql-server python2.6 python2.6-dev python-distribute;
-                sudo easy_install-2.6 pip;
+                sudo aptitude -y safe-upgrade",
+    path => "/usr/bin",
+}
+
+package { "git-core": ensure => "installed" }
+package { "libmysqlclient-dev": ensure => "installed" }
+package { "mysql-server":   ensure => "installed" }
+package { "python2.6":   ensure => "installed" }
+package { "python2.6-dev":   ensure => "installed" }
+package { "python-distribute":   ensure => "installed" }
+
+exec { "the_rest":
+    command => "sudo easy_install-2.6 pip;
                 cd /home/vagrant;
                 git clone --recursive git://github.com/aclark4life/kitsune.git;
                 sudo chown -R vagrant:vagrant /home/vagrant/kitsune;
