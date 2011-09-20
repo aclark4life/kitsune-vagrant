@@ -27,6 +27,6 @@ exec { "install_kitsune":
                 git clone --recursive git://github.com/aclark4life/kitsune.git;
                 cd /home/vagrant/kitsune;
                 sudo easy_install-2.6 pip;
-                sudo pip install -r requirements/compiled.txt;
+                sudo pip install -r requirements/compiled.txt;",
     path => "/usr/bin",
 }
