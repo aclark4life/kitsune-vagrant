@@ -20,14 +20,15 @@ exec { "apt_update":
 #}
 
 exec { "install_kitsune":
-    command => "aptitude -y install python2.6;
-                aptitude -y install python2.6-dev;
-                aptitude -y install git-core;
+    command => "sudo aptitude -y install python2.6;
+                sudo aptitude -y install python2.6-dev;
+                sudo aptitude -y install git-core;
                 cd /home/vagrant;
                 git clone --recursive git://github.com/aclark4life/kitsune.git;
+                sudo chown -R vagrant:vagrant /home/vagrant/kitsune;
                 cd /home/vagrant/kitsune;
-                easy_install-2.6 pip;
-                pip install -r requirements/compiled.txt;
+                sudo easy_install-2.6 pip;
+                sudo pip install -r requirements/compiled.txt;
                 git submodule update --init --recursive;",
     path => "/usr/bin",
 }
