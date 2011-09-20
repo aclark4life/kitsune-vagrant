@@ -24,8 +24,14 @@ exec { "install_git":
     path => "/usr/bin",
 }
 
+exec { "install_python":
+    command => "sudo aptitude -y install python2.6;
+                sudo aptitude -y install python2.6-dev;",
+    path => "/usr/bin",
+}
+
 exec { "clone_kitsune":
     command => "git clone git://github.com/aclark4life/kitsune.git"
-    # command => "git clone git://github.com/jsocol/kitsune.git"
+    # command => "git clone --recursive git://github.com/jsocol/kitsune.git"
     path => "/usr/bin",
 }
