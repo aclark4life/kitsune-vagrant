@@ -22,6 +22,7 @@ exec { "apt_update":
 exec { "install_kitsune":
     command => "sudo aptitude -y install python2.6;
                 sudo aptitude -y install python2.6-dev;
+                sudo aptitude -y install python-distribute;
                 sudo aptitude -y install git-core;
                 cd /home/vagrant;
                 git clone --recursive git://github.com/aclark4life/kitsune.git;
