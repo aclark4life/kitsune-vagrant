@@ -24,6 +24,8 @@ exec { "install_kitsune":
                 sudo aptitude -y install python2.6-dev;
                 sudo aptitude -y install python-distribute;
                 sudo aptitude -y install git-core;
+                sudo aptitude -y install mysql-server;
+                sudo aptitude -y install libmysqlclient-dev;
                 cd /home/vagrant;
                 git clone --recursive git://github.com/aclark4life/kitsune.git;
                 sudo chown -R vagrant:vagrant /home/vagrant/kitsune;
