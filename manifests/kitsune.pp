@@ -31,7 +31,10 @@ exec { "install_python":
 }
 
 exec { "clone_kitsune":
-    command => "git clone git://github.com/aclark4life/kitsune.git",
     # command => "git clone --recursive git://github.com/jsocol/kitsune.git",
+    command => "git clone --recursive git://github.com/aclark4life/kitsune.git",
     path => "/usr/bin",
+    onlyif => [
+        "test -f /usr/bin/git"
+    ]
 }
