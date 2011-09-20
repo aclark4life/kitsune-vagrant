@@ -12,13 +12,7 @@ file { '/etc/motd':
 exec { "install_kitsune":
     command => "sudo aptitude update;
                 sudo aptitude -y safe-upgrade;
-                sudo aptitude -y install
-                    git-core
-                    libmysqlclient-dev
-                    mysql-server
-                    python2.6
-                    python2.6-dev
-                    python-distribute;
+                sudo aptitude -y install git-core libmysqlclient-dev mysql-server python2.6 python2.6-dev python-distribute;
                 sudo easy_install-2.6 pip;
                 cd /home/vagrant;
                 git clone --recursive git://github.com/aclark4life/kitsune.git;
