@@ -14,10 +14,10 @@ exec { "apt_update":
     path => "/usr/bin",
 }
 
-exec { "apt_upgrade":
-    command => "sudo aptitude -y safe-upgrade",
-    path => "/usr/bin",
-}
+#exec { "apt_upgrade":
+#    command => "sudo aptitude -y safe-upgrade",
+#    path => "/usr/bin",
+#}
 
 exec { "install_python":
     command => "sudo aptitude -y install python2.6;
