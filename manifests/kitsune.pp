@@ -25,17 +25,13 @@ exec { "install_git":
 }
 
 exec { "install_python":
-    command => "sudo aptitude -y install python2.6",
-    path => "/usr/bin",
-}
-
-exec { "install_python_dev":
-    command => "sudo aptitude -y install python2.6-dev",
+    command => "sudo aptitude -y install python2.6;
+                sudo aptitude -y install python2.6-dev",
     path => "/usr/bin",
 }
 
 exec { "clone_kitsune":
-    command => "git clone git://github.com/aclark4life/kitsune.git"
-    # command => "git clone --recursive git://github.com/jsocol/kitsune.git"
+    command => "git clone git://github.com/aclark4life/kitsune.git",
+    # command => "git clone --recursive git://github.com/jsocol/kitsune.git",
     path => "/usr/bin",
 }
