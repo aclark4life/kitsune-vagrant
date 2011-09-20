@@ -2,11 +2,22 @@
 Introduction
 ============
 
-Clone this repository to run a kitsune [1]_ development environment inside a virtual machine [2]_::
+Follow these steps to run a kitsune [1]_ development environment inside a virtual machine [2]_
+
+Installation
+============
+
+Clone the repository::
 
     $ git clone git://github.com/aclark4life/kitsune-vagrant.git 
     $ cd kitsune-vagrant
-    $ vagrant box add kitsune http://files.vagrantup.com/lucid64.box [3]_
+
+Then add a vagrant box [3]_::
+
+    $ vagrant box add kitsune http://files.vagrantup.com/lucid64.box
+
+Then up the vagrant box::
+
     $ vagrant up
 
 Open http://33.33.33.10 in your browser (which of course, is `Firefox`_).
