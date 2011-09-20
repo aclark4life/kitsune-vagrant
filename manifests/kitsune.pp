@@ -15,6 +15,6 @@ exec { "update":
 }
 
 exec { "upgrade":
-    command => "sudo aptitude safe-upgrade",
+    command => "sudo aptitude -y safe-upgrade",
     path => "/usr/bin",
 }
