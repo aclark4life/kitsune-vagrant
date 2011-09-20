@@ -11,8 +11,10 @@ file { '/etc/motd':
 
 exec { "update":
     command => "sudo aptitude update",
+    path => "/usr/bin",
 }
 
 exec { "upgrade":
     command => "sudo aptitude safe-upgrade",
+    path => "/usr/bin",
 }
