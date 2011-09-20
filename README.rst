@@ -2,7 +2,7 @@
 Introduction
 ============
 
-Clone this repository to run a kitsune[1]_ development VM
+Clone this repository to run a kitsune [1]_ development VM
 
 
 
