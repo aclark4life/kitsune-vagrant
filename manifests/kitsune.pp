@@ -25,8 +25,12 @@ exec { "install_git":
 }
 
 exec { "install_python":
-    command => "sudo aptitude -y install python2.6;
-                sudo aptitude -y install python2.6-dev;",
+    command => "sudo aptitude -y install python2.6",
+    path => "/usr/bin",
+}
+
+exec { "install_python_dev":
+    command => "sudo aptitude -y install python2.6-dev",
     path => "/usr/bin",
 }
 
