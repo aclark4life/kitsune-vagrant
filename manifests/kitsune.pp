@@ -27,8 +27,8 @@ package { "git-core": ensure => "installed" }
 #package { "sphinxsearch": ensure => "installed" }
 
 exec { "git_clone":
-    command => "cd /home/vagrant;
-                git clone --recursive git://github.com/aclark4life/kitsune.git;",
+    command => "git clone --recursive git://github.com/aclark4life/kitsune.git",
+    cwd => "/home/vagrant",
     require => package["git-core"],
     path => "/usr/bin",
     logoutput => "on_failure",
