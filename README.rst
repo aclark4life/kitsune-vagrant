@@ -20,7 +20,13 @@ Then up the vagrant box::
 
     $ vagrant up
 
-Open http://33.33.33.10 in your browser (which of course, is `Firefox`_).
+This will take about 15-20 minutes to run on a "modern" machine (author has 2.66Ghz Macbook Pro w/4GB RAM). When it finishes, you should be able to do::
+
+    $ vagrant ssh
+    $ cd kitsune
+    $ ./manage.py
+
+and get back a list of options. Eventually, you will be able to see kitsune running by opening http://33.33.33.10 in your browser (which of course, is `Firefox`_).
 
 .. [1] https://github.com/jsocol/kitsune
 .. [2] Requires vagrant and VirtualBox to be installed: http://vagrantup.com, http://www.virtualbox.org/.
@@ -30,8 +36,20 @@ Open http://33.33.33.10 in your browser (which of course, is `Firefox`_).
 Troubleshooting
 ===============
 
+Vagrant is taking too long
+--------------------------
+
 Sometimes ``vagrant up`` will say::
 
     [default] Waiting for VM to boot. This can take a few minutes.
 
 then take much longer. If it takes longer than a few minutes, CTRL-C and re-run ``vagrant up``.
+
+Vagrant says read-only fs
+-------------------------
+
+Sometimes ``vagrant up`` will quit with the message::
+
+    [default] err: Could not send report: Got 1 failure(s) while initializing: change from absent to directory failed: Could not set 'directory on ensure: Read-only file system - /var/lib/puppet/rrd
+
+``vagrant destroy`` and ``vagrant up`` again should fix this problem (whatever it is).
