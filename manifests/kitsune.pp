@@ -57,6 +57,7 @@ exec { "vendor_packages":
     command => "git submodule update --init --recursive",
     cwd => "/home/vagrant/kitsune",
     path => "/usr/bin",
+    logoutput => true,
     require => Exec[
         'compiled_packages',
         'chown_kitsune',
