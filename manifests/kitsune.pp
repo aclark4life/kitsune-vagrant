@@ -9,15 +9,15 @@ file { '/etc/motd':
               Managed by Puppet. Featuring kitsune.\n"
 }
 
-exec { "update":
-    command => "sudo aptitude update",
-    path => "/usr/bin",
-}
-
-exec { "upgrade":
-    command => "sudo aptitude -y safe-upgrade",
-    path => "/usr/bin",
-}
+#exec { "update":
+#    command => "sudo aptitude update",
+#    path => "/usr/bin",
+#}
+#
+#exec { "upgrade":
+#    command => "sudo aptitude -y safe-upgrade",
+#    path => "/usr/bin",
+#}
 
 package { "git-core": ensure => "installed" }
 package { "libmysqlclient-dev": ensure => "installed" }
