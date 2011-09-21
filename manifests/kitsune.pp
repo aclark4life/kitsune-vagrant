@@ -16,22 +16,30 @@ file { '/etc/motd':
 #}
 
 package { "git-core": ensure => "installed" }
-package { "libmysqlclient-dev": ensure => "installed" }
-package { "libxml2-dev": ensure => "installed" }
-package { "libxslt-dev": ensure => "installed" }
-package { "mysql-server": ensure => "installed" }
-package { "pip": ensure => "installed" }
-package { "python2.6": ensure => "installed" }
-package { "python2.6-dev": ensure => "installed" }
-package { "python-distribute": ensure => "installed" }
-package { "sphinxsearch": ensure => "installed" }
+#package { "libmysqlclient-dev": ensure => "installed" }
+#package { "libxml2-dev": ensure => "installed" }
+#package { "libxslt-dev": ensure => "installed" }
+#package { "mysql-server": ensure => "installed" }
+#package { "pip": ensure => "installed" }
+#package { "python2.6": ensure => "installed" }
+#package { "python2.6-dev": ensure => "installed" }
+#package { "python-distribute": ensure => "installed" }
+#package { "sphinxsearch": ensure => "installed" }
 
-exec { "the_rest":
+exec { "git_clone"
     command => "cd /home/vagrant;
-                git clone --recursive git://github.com/aclark4life/kitsune.git;
-                cd /home/vagrant/kitsune;
-                sudo chown -R vagrant:vagrant /home/vagrant/kitsune;
-                sudo pip install -r requirements/compiled.txt;
-                git submodule update --init --recursive;",
+                git clone --recursive git://github.com/aclark4life/kitsune.git;"
+    require => package["git-core"]
     path => "/usr/bin",
+    logoutput => "on_failure",
 }
+
+#exec { "the_rest":
+#    command => "cd /home/vagrant;
+#                git clone --recursive git://github.com/aclark4life/kitsune.git;
+#                cd /home/vagrant/kitsune;
+#                sudo chown -R vagrant:vagrant /home/vagrant/kitsune;
+#                sudo pip install -r requirements/compiled.txt;
+#                git submodule update --init --recursive;",
+#    path => "/usr/bin",
+#}
