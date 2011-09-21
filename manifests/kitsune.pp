@@ -31,6 +31,7 @@ exec { "the_rest":
                 git clone --recursive git://github.com/aclark4life/kitsune.git;
                 cd /home/vagrant/kitsune;
                 sudo pip install -r requirements/compiled.txt;
+                sudo chown -R vagrant:vagrant /home/vagrant/kitsune;
                 git submodule update --init --recursive;",
     path => "/usr/bin",
 }
