@@ -35,16 +35,18 @@ exec { "git_clone":
     cwd => "/home/vagrant",
     logoutput => "on_failure",
     path => "/usr/bin",
-    require => package['git-core'],
-    require => package['libmysql-client-dev'],
-    require => package['libxml2-dev'],
-    require => package['libxslt-dev'],
-    require => package['mysql-server'],
-    require => package['python-pip'],
-    require => package['python2.6'],
-    require => package['python2.6-dev'],
-    require => package['python-distribute'],
-    require => package['sphinxsearch'],
+    require => package[
+        'git-core',
+        'libmysql-client-dev',
+        'libxml2-dev',
+        'libxslt-dev',
+        'mysql-server',
+        'python-pip',
+        'python2.6',
+        'python2.6-dev',
+        'python-distribute',
+        'sphinxsearch'
+    ],
 }
 
 exec { "chown_kitsune":
