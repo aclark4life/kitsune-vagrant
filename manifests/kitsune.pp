@@ -36,6 +36,15 @@ exec { "git_clone":
     logoutput => "on_failure",
     path => "/usr/bin",
     require => package['git-core'],
+    require => package['libmysql-client-dev'],
+    require => package['libxml2-dev'],
+    require => package['libxslt-dev'],
+    require => package['mysql-server'],
+    require => package['python-pip'],
+    require => package['python2.6'],
+    require => package['python2.6-dev'],
+    require => package['python-distribute'],
+    require => package['sphinxsearch'],
 }
 
 exec { "chown_kitsune":
