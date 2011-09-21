@@ -26,7 +26,7 @@ package { "git-core": ensure => "installed" }
 #package { "python-distribute": ensure => "installed" }
 #package { "sphinxsearch": ensure => "installed" }
 
-exec { "git_clone"
+exec { "git_clone":
     command => "cd /home/vagrant;
                 git clone --recursive git://github.com/aclark4life/kitsune.git;"
     require => package["git-core"]
