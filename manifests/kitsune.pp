@@ -20,7 +20,7 @@ package { "git-core": ensure => "installed" }
 #package { "libxml2-dev": ensure => "installed" }
 #package { "libxslt-dev": ensure => "installed" }
 #package { "mysql-server": ensure => "installed" }
-#package { "pip": ensure => "installed" }
+package { "pip": ensure => "installed" }
 #package { "python2.6": ensure => "installed" }
 #package { "python2.6-dev": ensure => "installed" }
 #package { "python-distribute": ensure => "installed" }
@@ -29,16 +29,20 @@ package { "git-core": ensure => "installed" }
 exec { "git_clone":
     command => "git clone --recursive git://github.com/aclark4life/kitsune.git",
     cwd => "/home/vagrant",
-    require => package["git-core"],
-    path => "/usr/bin",
     logoutput => "on_failure",
+    path => "/usr/bin",
+    require => package['git-core'],
+}
+
+exec { "chown_kitsune":
+    command => "sudo chown -R vagrant:vagrant /home/vagrant/kitsune",
+    logoutput => "on_failure",
+    path => "/usr/bin",
+    require => Exec['git_clone'],
 }
 
 #exec { "the_rest":
-#    command => "cd /home/vagrant;
-#                git clone --recursive git://github.com/aclark4life/kitsune.git;
-#                cd /home/vagrant/kitsune;
-#                sudo chown -R vagrant:vagrant /home/vagrant/kitsune;
+#    command => "
 #                sudo pip install -r requirements/compiled.txt;
 #                git submodule update --init --recursive;",
 #    path => "/usr/bin",
