@@ -9,22 +9,26 @@ file { '/etc/motd':
               Managed by Puppet. Featuring kitsune.\n"
 }
 
-#exec { "updates":
-#    command => "sudo aptitude update;
-#                sudo aptitude -y safe-upgrade",
-#    path => "/usr/bin",
-#}
+exec { "update":
+    command => "sudo aptitude update",
+    path => "/usr/bin",
+}
+
+exec { "upgrade":
+    command => "sudo aptitude -y safe-upgrade",
+    path => "/usr/bin",
+}
 
 package { "git-core": ensure => "installed" }
-#package { "libmysqlclient-dev": ensure => "installed" }
-#package { "libxml2-dev": ensure => "installed" }
-#package { "libxslt-dev": ensure => "installed" }
-#package { "mysql-server": ensure => "installed" }
+package { "libmysqlclient-dev": ensure => "installed" }
+package { "libxml2-dev": ensure => "installed" }
+package { "libxslt-dev": ensure => "installed" }
+package { "mysql-server": ensure => "installed" }
 package { "pip": ensure => "installed" }
-#package { "python2.6": ensure => "installed" }
-#package { "python2.6-dev": ensure => "installed" }
-#package { "python-distribute": ensure => "installed" }
-#package { "sphinxsearch": ensure => "installed" }
+package { "python2.6": ensure => "installed" }
+package { "python2.6-dev": ensure => "installed" }
+package { "python-distribute": ensure => "installed" }
+package { "sphinxsearch": ensure => "installed" }
 
 exec { "git_clone":
     command => "git clone --recursive git://github.com/aclark4life/kitsune.git",
@@ -41,9 +45,16 @@ exec { "chown_kitsune":
     require => Exec['git_clone'],
 }
 
-#exec { "the_rest":
-#    command => "
-#                sudo pip install -r requirements/compiled.txt;
-#                git submodule update --init --recursive;",
-#    path => "/usr/bin",
-#}
+exec { "compiled_packages":
+    command => "sudo pip install -r requirements/compiled.txt",
+    cwd => "/home/vagrant/kitsune",
+    path => "/usr/bin",
+    require => Exec['chown_kitsune'],
+}
+
+exec { "vendor_packages":
+    command => "git submodule update --init --recursive",
+    cwd => "/home/vagrant/kitsune",
+    path => "/usr/bin",
+    require => Exec['compiled_packages'],
+}
