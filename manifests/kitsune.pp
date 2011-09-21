@@ -37,7 +37,7 @@ exec { "git_clone":
     path => "/usr/bin",
     require => package[
         'git-core',
-        'libmysql-client-dev',
+        'libmysqlclient-dev',
         'libxml2-dev',
         'libxslt-dev',
         'mysql-server',
