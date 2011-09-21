@@ -19,10 +19,11 @@ package { "git-core": ensure => "installed" }
 package { "libmysqlclient-dev": ensure => "installed" }
 package { "libxml2-dev": ensure => "installed" }
 package { "libxslt-dev": ensure => "installed" }
-package { "mysql-server":   ensure => "installed" }
-package { "python2.6":   ensure => "installed" }
-package { "python2.6-dev":   ensure => "installed" }
-package { "python-distribute":   ensure => "installed" }
+package { "mysql-server": ensure => "installed" }
+package { "python2.6": ensure => "installed" }
+package { "python2.6-dev": ensure => "installed" }
+package { "python-distribute": ensure => "installed" }
+package { "sphinxsearch": ensure => "installed" }
 
 exec { "the_rest":
     command => "sudo easy_install-2.6 pip;
