@@ -52,4 +52,4 @@ Sometimes ``vagrant up`` will quit with the message::
 
     [default] err: Could not send report: Got 1 failure(s) while initializing: change from absent to directory failed: Could not set 'directory on ensure: Read-only file system - /var/lib/puppet/rrd
 
-``vagrant destroy`` and ``vagrant up`` again should fix this problem (whatever it is).
+``vagrant destroy`` and ``vagrant up`` again should fix the problem (whatever it is).
