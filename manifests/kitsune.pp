@@ -70,6 +70,6 @@ exec { "vendor_packages":
     require => Exec[
         'compiled_packages',
         'chown_kitsune',
-        'git_clone',
+        'git_clone'
     ],
 }
