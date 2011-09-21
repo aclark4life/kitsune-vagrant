@@ -26,3 +26,12 @@ Open http://33.33.33.10 in your browser (which of course, is `Firefox`_).
 .. [2] Requires vagrant and VirtualBox to be installed: http://vagrantup.com, http://www.virtualbox.org/.
 .. _`Firefox`: http://getfirefox.com
 .. [3] You only need to do this once. Afterward you can ``vagrant destroy`` and ``vagrant up`` as needed.
+
+Troubleshooting
+===============
+
+Sometimes ``vagrant up`` will say::
+
+    [default] Waiting for VM to boot. This can take a few minutes.
+
+then take much longer. If it takes longer than a few minutes, CTRL-C and re-run ``vagrant up``.
