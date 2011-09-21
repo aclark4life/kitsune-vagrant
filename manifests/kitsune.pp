@@ -20,18 +20,18 @@ package { "libmysqlclient-dev": ensure => "installed" }
 package { "libxml2-dev": ensure => "installed" }
 package { "libxslt-dev": ensure => "installed" }
 package { "mysql-server": ensure => "installed" }
+package { "pip": ensure => "installed" }
 package { "python2.6": ensure => "installed" }
 package { "python2.6-dev": ensure => "installed" }
 package { "python-distribute": ensure => "installed" }
 package { "sphinxsearch": ensure => "installed" }
 
 exec { "the_rest":
-    command => "sudo easy_install-2.6 pip;
-                cd /home/vagrant;
+    command => "cd /home/vagrant;
                 git clone --recursive git://github.com/aclark4life/kitsune.git;
                 cd /home/vagrant/kitsune;
-                sudo pip install -r requirements/compiled.txt;
                 sudo chown -R vagrant:vagrant /home/vagrant/kitsune;
+                sudo pip install -r requirements/compiled.txt;
                 git submodule update --init --recursive;",
     path => "/usr/bin",
 }
