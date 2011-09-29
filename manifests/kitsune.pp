@@ -5,8 +5,13 @@ group { "puppet":
 File { owner => 0, group => 0, mode => 0644 }
 
 file { '/etc/motd':
-  content => "Welcome to your Vagrant-built virtual machine!
-              Managed by Puppet. Featuring kitsune.\n"
+    content => "Welcome to your Vagrant-built virtual machine!
+                Managed by Puppet. Featuring kitsune.\n"
+}
+
+file { '/home/vagrant/kitsune/settings_local.py':
+    content => "from settings import *\n",
+    require => Exec['git_clone'],
 }
 
 package { "git-core": ensure => "installed" }
