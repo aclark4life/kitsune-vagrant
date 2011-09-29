@@ -10,7 +10,19 @@ file { '/etc/motd':
 }
 
 file { '/home/vagrant/kitsune/settings_local.py':
-    content => "from settings import *\n",
+    content => "from settings import *\n
+DATABASES = {
+    'default': {
+        'NAME': 'kitsune',
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'localhost',
+        'USER': 'root',
+        'PASSWORD': '',
+        'OPTIONS': {'init_command': 'SET storage_engine=InnoDB'},
+        'TEST_CHARSET': 'utf8',
+        'TEST_COLLATION': 'utf8_unicode_ci',
+    },
+}\n",
     require => Exec['git_clone'],
 }
 
