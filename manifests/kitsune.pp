@@ -1,5 +1,5 @@
 group { "puppet":
-  ensure => "present",
+    ensure => "present",
 }
 
 File { owner => 0, group => 0, mode => 0644 }
@@ -40,7 +40,7 @@ package { "sphinxsearch": ensure => "installed" }
 exec { "git_clone":
     command => "git clone --recursive git://github.com/aclark4life/kitsune.git",
     cwd => "/home/vagrant",
-    logoutput => "on_failure",
+    logoutput => "true",
     path => "/usr/bin",
     require => package[
         'git-core',
@@ -58,7 +58,7 @@ exec { "git_clone":
 
 exec { "chown_kitsune":
     command => "sudo chown -R vagrant:vagrant /home/vagrant/kitsune",
-    logoutput => "on_failure",
+    logoutput => "true",
     path => "/usr/bin",
     require => Exec['git_clone'],
 }
@@ -80,4 +80,27 @@ exec { "vendor_packages":
         'chown_kitsune',
         'git_clone'
     ],
+}
+
+exec { "db_create":
+    command => "mysqladmin -u root create kitsune;",
+    logoutput => "true",
+    path => "/usr/bin:/bin",
+    require => Exec['vendor_packages'],
+}
+
+exec { "db_import":
+    command => "mysql -u root kitsune < scripts/schema.sql;",
+    cwd => "/home/vagrant/kitsune",
+    logoutput => "true",
+    path => "/usr/bin:/bin",
+    require => Exec['db_create'],
+}
+
+exec { "db_sync":
+    command => "manage.py syncdb",
+    cwd => "/home/vagrant/kitsune",
+    logoutput => "true",
+    path => "/usr/bin:/bin:home/vagrant/kitsune",
+    require => Exec['db_import'],
 }
