@@ -46,12 +46,14 @@ package {
 
 exec { "update":
     command => "aptitude update",
+    logoutput => "true",
     path => "/usr/bin",
 }
 
 exec { "upgrade":
     command => "aptitude -y upgrade",
     path => "/usr/bin",
+    logoutput => "true",
     require => Exec['update'],
 }
 
