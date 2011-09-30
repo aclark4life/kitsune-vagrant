@@ -52,7 +52,7 @@ exec { "update":
 
 exec { "upgrade":
     command => "aptitude -y upgrade",
-    path => "/bin:/usr/bin",
+    path => "/bin:/usr/bin:/sbin",
     logoutput => "true",
     require => Exec['update'],
 }
