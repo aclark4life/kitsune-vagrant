@@ -30,7 +30,7 @@ $packages = [
     "git-core",
     "libmysqlclient-dev",
     "libxml2-dev",
-    "libxslt-dev,
+    "libxslt-dev",
     "mysql-server",
     "python-pip",
     "python2.6",
