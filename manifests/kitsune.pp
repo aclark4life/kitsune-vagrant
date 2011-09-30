@@ -26,16 +26,35 @@ DATABASES = {
     require => Exec['git_clone'],
 }
 
-package { "git-core": ensure => "installed" }
-package { "libmysqlclient-dev": ensure => "installed" }
-package { "libxml2-dev": ensure => "installed" }
-package { "libxslt-dev": ensure => "installed" }
-package { "mysql-server": ensure => "installed" }
-package { "python-pip": ensure => "installed" }
-package { "python2.6": ensure => "installed" }
-package { "python2.6-dev": ensure => "installed" }
-package { "python-distribute": ensure => "installed" }
-package { "sphinxsearch": ensure => "installed" }
+$packages = [
+    "git-core",
+    "libmysqlclient-dev",
+    "libxml2-dev",
+    "libxslt-dev,
+    "mysql-server",
+    "python-pip",
+    "python2.6",
+    "python2.6-dev",
+    "python-distribute",
+    "sphinxsearch",
+]
+
+package {
+    $packages: ensure => "installed"
+    logoutput => "true",
+    require => Exec['upgrade'],
+}
+
+exec { "update":
+    command => "aptitude update",
+    path => "/usr/bin",
+}
+
+exec { "upgrade":
+    command => "aptitude safe-upgrade",
+    path => "/usr/bin",
+    require => Exec['update'],
+}
 
 exec { "git_clone":
     command => "git clone --recursive git://github.com/aclark4life/kitsune.git",
