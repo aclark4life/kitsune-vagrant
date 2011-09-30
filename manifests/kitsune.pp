@@ -55,6 +55,7 @@ exec { "upgrade":
     path => "/bin:/sbin:/usr/bin:/usr/local/sbin:/usr/sbin",
     logoutput => "true",
     require => Exec['update'],
+    timeout => "6000",
 }
 
 exec { "git_clone":
@@ -100,6 +101,7 @@ exec { "vendor_packages":
         'chown_kitsune',
         'git_clone'
     ],
+    timeout => "6000",
 }
 
 exec { "db_create":
