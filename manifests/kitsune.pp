@@ -50,7 +50,7 @@ exec { "update":
 }
 
 exec { "upgrade":
-    command => "aptitude safe-upgrade",
+    command => "aptitude -y upgrade",
     path => "/usr/bin",
     require => Exec['update'],
 }
