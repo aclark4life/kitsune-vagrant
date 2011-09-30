@@ -41,7 +41,6 @@ $packages = [
 
 package {
     $packages: ensure => "installed",
-    logoutput => "true",
     require => Exec['upgrade'],
 }
 
