@@ -123,6 +123,6 @@ exec { "db_sync":
     command => "manage.py syncdb",
     cwd => "/home/vagrant/kitsune",
     logoutput => "true",
-    path => "/usr/bin:/bin:home/vagrant/kitsune",
+    path => "/usr/bin:/bin:/home/vagrant/kitsune",
     require => Exec['db_import'],
 }
