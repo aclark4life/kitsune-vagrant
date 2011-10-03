@@ -85,7 +85,7 @@ exec { "packages_upgrade":
 }
 
 exec { "git_clone":
-    command => "git clone --recursive git://github.com/aclark4life/kitsune.git",
+    command => "git clone --recursive git://github.com/jsocol/kitsune.git",
     cwd => "/home/vagrant",
     logoutput => "true",
     path => "/usr/bin",
@@ -132,14 +132,6 @@ exec { "db_import":
     logoutput => "true",
     path => "/usr/bin:/bin",
     require => Exec['db_create'],
-}
-
-exec { "db_sync":
-    command => "manage.py syncdb",
-    cwd => "/home/vagrant/kitsune",
-    logoutput => "true",
-    path => "/usr/bin:/bin:/home/vagrant/kitsune",
-    require => Exec['db_import'],
 }
 
 exec { "supervisor_stop":
