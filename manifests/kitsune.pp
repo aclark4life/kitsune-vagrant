@@ -48,10 +48,10 @@ command = /home/vagrant/kitsune/manage.py runserver 33.33.33.10:8000
 directory = /home/vagrant/kitsune
 user = vagrant
 ",
-    require => Exec['db_import'],
+    require => Exec['db_sync'],
 }
 
-$packages = [
+$packages_native = [
     "git-core",
     "libmysqlclient-dev",
     "libxml2-dev",
@@ -66,21 +66,21 @@ $packages = [
 ]
 
 package {
-    $packages: ensure => "installed",
-    require => Exec['upgrade'],
+    $packages_native: ensure => "installed",
+    require => Exec['packages_upgrade'],
 }
 
-exec { "update":
+exec { "packages_update":
     command => "aptitude update",
     logoutput => "true",
     path => "/usr/bin",
 }
 
-exec { "upgrade":
+exec { "packages_upgrade":
     command => "aptitude -y upgrade",
     path => "/bin:/sbin:/usr/bin:/usr/local/sbin:/usr/sbin",
     logoutput => "true",
-    require => Exec['update'],
+    require => Exec['packages_update'],
     timeout => "6000",
 }
 
@@ -89,18 +89,7 @@ exec { "git_clone":
     cwd => "/home/vagrant",
     logoutput => "true",
     path => "/usr/bin",
-    require => package[
-        'git-core',
-        'libmysqlclient-dev',
-        'libxml2-dev',
-        'libxslt-dev',
-        'mysql-server',
-        'python-pip',
-        'python2.6',
-        'python2.6-dev',
-        'python-distribute',
-        'sphinxsearch'
-    ],
+    require => Package[$packages_native],
 }
 
 exec { "chown_kitsune":
@@ -110,20 +99,20 @@ exec { "chown_kitsune":
     require => Exec['git_clone'],
 }
 
-exec { "compiled_packages":
+exec { "packages_compiled":
     command => "sudo pip install -r requirements/compiled.txt",
     cwd => "/home/vagrant/kitsune",
     path => "/usr/bin",
     require => Exec['chown_kitsune'],
 }
 
-exec { "vendor_packages":
+exec { "packages_vendor":
     command => "git submodule update --init --recursive",
     cwd => "/home/vagrant/kitsune",
     path => "/usr/bin:/bin",
     logoutput => true,
     require => Exec[
-        'compiled_packages',
+        'packages_compiled',
         'chown_kitsune',
         'git_clone'
     ],
@@ -134,7 +123,7 @@ exec { "db_create":
     command => "mysqladmin -u root create kitsune;",
     logoutput => "true",
     path => "/usr/bin:/bin",
-    require => Exec['vendor_packages'],
+    require => Exec['packages_vendor'],
 }
 
 exec { "db_import":
@@ -157,11 +146,11 @@ exec { "supervisor_stop":
     command => "/etc/init.d/supervisor stop",
     logoutput => "true",
     path => "/usr/bin:/bin",
-    require => Exec['db_sync'],
+    require => file['/etc/supervisor/supervisord.conf'],
 }
 
 exec { "supervisor_start":
-    command => "/etc/init.d/supervisor stop",
+    command => "/etc/init.d/supervisor start",
     logoutput => "true",
     path => "/usr/bin:/bin",
     require => Exec['supervisor_stop'],
