@@ -48,7 +48,7 @@ command = /home/vagrant/kitsune/manage.py runserver 33.33.33.10:8000
 directory = /home/vagrant/kitsune
 user = vagrant
 ",
-    require => Exec['db_sync'],
+    require => Exec['db_import'],
 }
 
 $packages = [
@@ -62,6 +62,7 @@ $packages = [
     "python2.6-dev",
     "python-distribute",
     "sphinxsearch",
+    "supervisor",
 ]
 
 package {
@@ -150,4 +151,18 @@ exec { "db_sync":
     logoutput => "true",
     path => "/usr/bin:/bin:/home/vagrant/kitsune",
     require => Exec['db_import'],
+}
+
+exec { "supervisor_stop":
+    command => "/etc/init.d/supervisor stop",
+    logoutput => "true",
+    path => "/usr/bin:/bin",
+    require => Exec['db_sync'],
+}
+
+exec { "supervisor_start":
+    command => "/etc/init.d/supervisor stop",
+    logoutput => "true",
+    path => "/usr/bin:/bin",
+    require => Exec['supervisor_stop'],
 }
