@@ -26,6 +26,31 @@ DATABASES = {
     require => Exec['git_clone'],
 }
 
+file { '/etc/supervisor/conf.d/kitsune':
+    content => "
+[unix_http_server]
+file=/var/run//supervisor.sock   ; (the path to the socket file)
+chmod=0700                       ; sockef file mode (default 0700)
+
+[supervisord]
+logfile=/var/log/supervisor/supervisord.log ; (main log file;default $CWD/supervisord.log)
+pidfile=/var/run/supervisord.pid ; (supervisord pidfile;default supervisord.pid)
+childlogdir=/var/log/supervisor            ; ('AUTO' child log dir, default $TEMP)
+
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+
+[supervisorctl]
+serverurl=unix:///var/run//supervisor.sock ; use a unix:// URL  for a unix socket
+
+[program:kitsune]
+command = /home/vagrant/kitsune/manage.py runserver 33.33.33.10:8000
+directory = /home/vagrant/kitsune
+user = vagrant
+",
+    require => Exec['db_sync'],
+}
+
 $packages = [
     "git-core",
     "libmysqlclient-dev",
