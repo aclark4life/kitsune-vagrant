@@ -26,7 +26,7 @@ DATABASES = {
     require => Exec['git_clone'],
 }
 
-file { '/etc/supervisor/conf.d/kitsune':
+file { '/etc/supervisor/supervisord.conf':
     content => "
 [unix_http_server]
 file=/var/run//supervisor.sock   ; (the path to the socket file)
