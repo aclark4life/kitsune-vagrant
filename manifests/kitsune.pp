@@ -88,7 +88,7 @@ exec { "git_clone":
     command => "git clone --recursive git://github.com/jsocol/kitsune.git",
     cwd => "/home/vagrant",
     logoutput => "true",
-    path => "/usr/bin",
+    path => "/bin:/sbin:/usr/bin:/usr/local/sbin:/usr/sbin",
     require => Package[$packages_native],
 }
 
