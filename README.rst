@@ -20,11 +20,9 @@ Then up the vagrant box::
 
     $ vagrant up
 
-This will take about 15-20 minutes to run on a "modern" machine (author has 2.66Ghz Macbook Pro w/4GB RAM). When it finishes, you should be able to do::
+This will take about 15-20 minutes to run on a "modern" machine (author has 2.66Ghz Macbook Pro w/4GB RAM). When it finishes, you should be able to open:
 
-    $ vagrant ssh
-    $ cd kitsune
-    $ ./manage.py
+- http://33.33.33.10:8000
 
 and get back a list of options. Eventually, you will be able to see kitsune running by opening http://33.33.33.10 in your browser (which of course, is `Firefox`_).
 
