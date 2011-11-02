@@ -26,11 +26,6 @@ This will take about 15-20 minutes to run on a "modern" machine (author has 2.66
 
 Eventually, you will be able to see kitsune running by opening http://33.33.33.10 in your browser (via mod_wsgi).
 
-.. [1] https://github.com/jsocol/kitsune
-.. [2] Requires vagrant and VirtualBox to be installed: http://vagrantup.com, http://www.virtualbox.org/.
-.. _`Firefox`: http://getfirefox.com
-.. [3] You only need to do this once. Afterward you can ``vagrant destroy`` and ``vagrant up`` as needed.
-
 Todo
 ====
 
@@ -58,3 +53,9 @@ Sometimes ``vagrant up`` will quit with the message::
     [default] err: Could not send report: Got 1 failure(s) while initializing: change from absent to directory failed: Could not set 'directory on ensure: Read-only file system - /var/lib/puppet/rrd
 
 ``vagrant destroy`` and ``vagrant up`` again should fix the problem (whatever it is).
+
+.. [1] https://github.com/jsocol/kitsune
+.. [2] Requires vagrant and VirtualBox to be installed: http://vagrantup.com, http://www.virtualbox.org/.
+.. _`Firefox`: http://getfirefox.com
+.. [3] You only need to do this once. Afterward you can ``vagrant destroy`` and ``vagrant up`` as needed.
+
