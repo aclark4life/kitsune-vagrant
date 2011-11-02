@@ -29,7 +29,7 @@ Eventually, you will be able to see kitsune running by opening http://33.33.33.1
 Todo
 ====
 
-- Use https://github.com/jsocol/kitsune-vagrant instead of https://github.com/aclark4life/kitsune-vagrant.
+- Use ``https://github.com/jsocol/kitsune-vagrant`` instead of ``https://github.com/aclark4life/kitsune-vagrant``
     - XXX?
 - Add mod_wsgi support.
 
