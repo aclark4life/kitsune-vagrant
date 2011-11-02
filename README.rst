@@ -54,6 +54,9 @@ Sometimes ``vagrant up`` will quit with the message::
 
 ``vagrant destroy`` and ``vagrant up`` again should fix the problem (whatever it is).
 
+Notes
+=====
+
 .. [1] https://github.com/jsocol/kitsune
 .. [2] Requires vagrant and VirtualBox to be installed: http://vagrantup.com, http://www.virtualbox.org/.
 .. _`Firefox`: http://getfirefox.com
