@@ -138,7 +138,7 @@ exec { "supervisor_stop":
     command => "/etc/init.d/supervisor stop",
     logoutput => "true",
     path => "/usr/bin:/bin",
-    require => file['/etc/supervisor/supervisord.conf'],
+    require => File['/etc/supervisor/supervisord.conf'],
 }
 
 exec { "supervisor_start":
