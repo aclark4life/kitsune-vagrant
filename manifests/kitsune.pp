@@ -48,7 +48,6 @@ command = /home/vagrant/kitsune/manage.py runserver 33.33.33.10:8000
 directory = /home/vagrant/kitsune
 user = vagrant
 ",
-    require => Exec['db_sync'],
 }
 
 $packages_native = [
